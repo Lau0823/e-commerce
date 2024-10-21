@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+  footer {
+    background-color: lightgray;
+    padding: 1rem;
+  }
+  /* En tu archivo CSS global */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Helvetica', sans-serif;
+  background-color: #ffffff;
+}
+
