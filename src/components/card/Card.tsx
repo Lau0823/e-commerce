@@ -1,6 +1,6 @@
-
 import React, { useState } from "react";
 import { ICardProps } from "@/interfaces/types";
+import Image from 'next/image'; // Importar el componente Image
 
 const Card: React.FC<ICardProps> = ({ name, price, stock, description, image }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -11,12 +11,14 @@ const Card: React.FC<ICardProps> = ({ name, price, stock, description, image }) 
   };
 
   return (
-    <div className=" min-h-screen p-6 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-md min-h-[450px] flex flex-col">
+    <div className="min-h-screen p-6 bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-md min-h-[450px] flex flex-col">
       {/* Imagen del producto */}
-      <img
+      <Image
         src={image}
         alt={`Imagen del producto ${name}`}
-        className=" w-full h-30 object-cover rounded-t-lg" // Ajustando la altura y manteniendo `object-cover`
+        width={500} // Ajusta según el tamaño que prefieras
+        height={300} // Ajusta según el tamaño que prefieras
+        className="w-full h-30 object-cover rounded-t-lg" // Ajustando la altura y manteniendo `object-cover`
       />
       
       {/* Información del producto */}

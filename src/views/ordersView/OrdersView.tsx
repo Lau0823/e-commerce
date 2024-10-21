@@ -1,5 +1,5 @@
 "use client";
-import Orders from "@/app/dashboard/orders/page";
+
 import { getOrders } from "@/helpers/orders.helpers";
 import { IUserSession, IOrder } from "@/interfaces/types";
 import { useRouter} from "next/navigation"
@@ -11,9 +11,7 @@ const OrdersView = () => {
   
   const [orders, setOrders] = useState<IOrder[]>([]); // Inicia con un array vacío
   const [userData, setUserData] = useState<IUserSession | null>(null); 
-// Agrega el estado para userData
 
-  // useEffect para obtener la información del usuario del localStorage
   useEffect(() => {
 
     if (typeof window !== "undefined" && window.localStorage) {
