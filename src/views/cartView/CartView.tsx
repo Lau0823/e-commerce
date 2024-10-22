@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import { createOrder } from "@/helpers/orders.helpers";
+import Image from "next/image"; // Importa Image
 
 const CartView = () => {
   const [cart, setCart] = useState<IProduct[]>([]);
-  const [totalCart, setTotalCart] = useState<number>(0);
   const [userData, setUserData] = useState<IUserSession>();
 
   const Toast = Swal.mixin({
@@ -23,43 +23,29 @@ const CartView = () => {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-      if (storedCart) {
-        let totalCart = 0;
-        storedCart.map((item: IProduct) => {
-          totalCart = totalCart + item.price;
-        });
-        setTotalCart(totalCart);
-        setCart(storedCart);
-      }
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    if (storedCart) {
+      setCart(storedCart);
     }
   }, []);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const userData = JSON.parse(localStorage.getItem("userSession") || "[]");
-      setUserData(userData); // Guardar los datos del usuario
-    }
+    const userData = JSON.parse(localStorage.getItem("userSession") || "{}");
+    setUserData(userData); // Guardar los datos del usuario
   }, []);
 
   const handleClick = async () => {
-    const idProducts: number[] = cart?.map((product) => product.id);
+    const idProducts: number[] = cart.map((product) => product.id);
     await createOrder(idProducts, userData?.token!);
     setCart([]);
-    setTotalCart(0);
     localStorage.setItem("cart", "[]");
 
     Toast.fire({
       icon: "success",
       title: "Buy Successfully!",
     });
-
-    // Redirigir al home después de la compra exitosa
-    // No se usa router.push, se redirige a través del link en el render
   };
 
-  // Función para eliminar un producto del carrito
   const handleRemoveProduct = (productId: number) => {
     const updatedCart = cart.filter((product) => product.id !== productId);
     setCart(updatedCart);
@@ -73,7 +59,6 @@ const CartView = () => {
     });
   };
 
-  // Función para vaciar el carrito
   const handleClearCart = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -118,10 +103,12 @@ const CartView = () => {
             key={product.id}
             className="flex flex-col bg-white border border-gray-200 rounded-lg shadow-lg w-full max-w-sm m-6 p-6 transition-transform duration-300 hover:scale-105"
           >
-            <img
+            <Image
               className="m-6 w-38 h-48 object-cover rounded-t-lg"
               src={product.image}
               alt={`Image of ${product.name}`}
+              width={150} // Ajusta según tu diseño
+              height={200} // Ajusta según tu diseño
             />
             <div className="p-4 flex flex-col flex-grow">
               <h3 className="text-xl font-semibold text-gray-800 bg-gradient-to-br from-yellow-500 to-orange-500 p-2 rounded-lg">{product.name}</h3>

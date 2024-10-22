@@ -2,6 +2,7 @@
 import React from "react";
 import Slider from "react-slick";
 
+
 interface ProductCarouselProps {
   images: string[]; // Array de strings para manejar las imágenes
 }

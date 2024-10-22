@@ -1,7 +1,5 @@
 "use client";
 import { IProduct, IUserSession } from "@/interfaces/types";
-import { useRouter } from "next/navigation";
-import router from "next/router";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -51,7 +49,8 @@ const ProductDetail: React.FC<IProduct> = ({
           icon: "warning",
           title: "This product is already in the cart",
         });
-        router.push("/cart"); // Redirigir al carrito si el producto ya está
+        // Redirigir al carrito si el producto ya está
+        window.location.href = "/cart"; 
       } else {
         // Cambiar esta parte para agregar un objeto de producto
         const productToAdd = { name, image, description, price, stock, id, categoryId };

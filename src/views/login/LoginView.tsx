@@ -1,6 +1,7 @@
-"use client";
+// views/login/LoginView.tsx
+"use client"; 
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ILoginProps } from '@/interfaces/types';
 import { validateLoginForm } from '@/helpers/validate';
 import { login } from '@/helpers/auth.helpers';
@@ -81,18 +82,18 @@ const LoginView: React.FC = () => {
   };
 
   return (
-    <div className="pl-20 ml-15 min-h-screen flex items-center  min-h-screen flex items-center justify-center"
-  style={{
-    backgroundImage: "url('https://i.pinimg.com/564x/51/bc/71/51bc7139eee46cc9b525c6ae3276592e.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }} >
+    <div className="pl-20 ml-15 min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: "url('https://i.pinimg.com/564x/51/bc/71/51bc7139eee46cc9b525c6ae3276592e.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }} >
       <div>
         <h1 className="text-black text-2xl mb-6 ml-6 mr-6 ">Sign in to </h1>
       </div>
       <form
         onSubmit={handleSubmit}
-        className=" bg-fuchsia-300 text-black p-8 rounded-lg shadow-md w-full max-w-md"
+        className="bg-fuchsia-300 text-black p-8 rounded-lg shadow-md w-full max-w-md"
       >
         <div className="mb-4">
           <label htmlFor="email" className="">
